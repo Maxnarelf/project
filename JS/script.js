@@ -1,22 +1,68 @@
 "use strict";
 
-const str = "teSt";
+let numberOfFilms;
 
+function start() {
+    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-// console.log(str.toUpperCase());
-console.log(str.toLowerCase());
-console.log(str);
+    while(numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)){
+        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    }
+}
+start();
 
-const fruit = "Some fruit";
+const personalMovieDb = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
+};
 
-console.log(fruit.indexOf("q"));
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+        const a = prompt('Один из последних просмотренных фильмов', ''),
+              b = prompt('На сколько оцените его ?', '');
+    
+        if (a && b && a.length < 50) {
+             personalMovieDb.movies[a] = b;
+             console.log('done');  
+         }else{
+             console.log('error');
+             i--;
+         }
+    }
+}
+// rememberMyFilms (); 
 
-const logg = "Hello world";
+   function detectPersonalLevel(){
+    if (personalMovieDb.count < 10) {
+        console.log('Просмотрено довольно мало фильмов');
+    }else if (personalMovieDb.count >= 10 && personalMovieDb.count < 30 ) {
+        console.log('Вы классический зритель'); 
+    }else if (personalMovieDb.count >= 30) {
+        console.log('Вы киноман');
+    }else {
+        console.log('ошибка');
+    }
+   }
 
-// console.log(logg.slice(6)); 
+//    detectPersonalLevel();
 
-// console.log(logg.substring(6, 10)); 
-console.log(logg.substr(6, 5)); 
+   function showMyDB(hidden) {
+       if (!hidden) {
+           console.log(personalMovieDb);
+        }
+   }
+   
+  showMyDB(personalMovieDb.privat);
+    
+  function writeYourGernres() {
+      for (let i = 1; i <= 3; i++) {
+             personalMovieDb.genres[i - 1]= prompt(`Ваш любимый жанр под номером ${i}`);
 
-const num = 12.2;
-console.log(Math.ro)
+      }
+  }
+
+  writeYourGernres();
+    
