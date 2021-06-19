@@ -1,81 +1,51 @@
 "use strict";
 
+const box = document.getElementById('box'),
+      btns = document.getElementsByTagName('button'),
+      circles = document.getElementsByClassName('circle'),
+      wrapper = document.querySelector('.wrapper'),
+      hearts = wrapper.querySelectorAll('.heart'),
+      oneHeart = wrapper.querySelector('.heart');
+     
+    //   box.style.backgroundColor = 'blue';
+    //   box.style.width = '500px';
 
-const personalMovieDB = {
-    count: 0,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false,
-    start: function() {
-        personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели ?', '');
+       box.style.cssText = `background-color: blue; width: 500px`;
+
+       btns[1].style.borderRadius = '100%';
+       circles[0].style.backgroundColor = 'red';
+
+    //    for(let i = 0; i < hearts.length; i++) {
+    //       hearts[i].style.backgroundColor = 'green';
+    //    }
     
-        while(personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)){
-            personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
-        }
-    },
+    hearts.forEach(item => {
+        item.style.backgroundColor = 'yellow';
+    });
 
-    rememberMyFilms: function() {
-        for (let i = 0; i < 2; i++) {
-            const a = prompt('Один из последних просмотренных фильмов?', ''),
-                  b = prompt('На сколько оцените его?', '');
-    
-        if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-            personalMovieDB.movies[a] = b;
-            console.log('done');
-        } else {
-            console.log('error');
-            i--;
-        }
-    }
-},
+    const div = document.createElement('div');
+    // const text = document.createTextNode('Тут был я');
 
-    detectPersonalLevel: function() {
-        if (personalMovieDB.count < 10) {
-            console.log("Просмотрено довольно мало фильмов");
-        } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-            console.log("Вы классический зритель");
-        } else if (personalMovieDB.count >= 30) {
-            console.log("Вы киноман");
-        } else {
-            console.log("Произошла ошибка");
-        }
-    },
+    div.classList.add('black');
 
-    showMyDB: function(hidden) {
-        if (!hidden) {
-        console.log(personalMovieDB);
-        }
-    },
-    toggleVisibleMyDB: function() {
-        if (personalMovieDB.privat) {
-            personalMovieDB.privat = false;    
-        }else {
-            personalMovieDB.privat = true;
-        }
-    },
-    writeYourGenres: function() {
-        for (let i = 1; i < 2; i++) {
-            // let genre = prompt(`Ваш любимый жанр под номером ${i}`);
-            
-            // if (genre === '' || genre == null) {
-            //     console.log('Вы ввели некорректные данные или не ввели их вовсе');
-            //     i--;
-            // } else {
-            //             personalMovieDB.genres[i - 1] = genre;
-            // } 
-            let genres = prompt (`Введите виши любимые жанры через запятую`).toLowerCase();
-            
-            if (genres === '' || genres == null) {
-                console.log('Вы ввели некорректные данные или не ввели их вовсе');
-                i--;
-            } else {
-                personalMovieDB.genres = genres.split(', ');
-                personalMovieDB.genres.sort();
-            }
-        }
-        personalMovieDB.genres.forEach((item, i) => {
-            console.log(`Любимый жанр ${i + 1} - это ${item}`);
-        });
-    }
-};
+    wrapper.append(div);
+    // wrapper.appendChild(div);
+
+    // wrapper.prepend(div);
+
+    // hearts[1].before(div);
+
+    // wrapper.insertBefore(div, hearts[1]);
+
+    // circles[0].remove();
+    // wrapper.removeChild(hearts[0]);
+    // hearts[0].replaceWith(circles[0]);
+    // wrapper.replaceChild(circles[0], hearts[0]);
+
+    // div.innerHTML = "<h1>Hello world</h1>";
+
+    // div.textContent ="Hello";
+
+    div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
+
+
